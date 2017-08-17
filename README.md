@@ -1,6 +1,6 @@
 # XD_Compiler
 
-Still under construction, so yeah come back in 6 months and thier might be something interesting to learn about.
+Still under construction. Currenly working on making the programming interface more user friendly.
 
 
 
