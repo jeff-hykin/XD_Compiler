@@ -1,6 +1,6 @@
 # XD_Parser
 
-The parser is functional and stable, however it still needs an interface in order to be easily used. The refined interface will likely be built around Jan 2017.
+The parser is functional and stable, however it still needs an interface. The refined interface will likely be built around Jan 2017. Until the interface is made, it is posted here more for ease of access than collaboration.
 
 # Demo
 To get a quick feel for the project, clone the repo, and run the parser file. It parses some demo code and prints the code as a syntax tree. 
