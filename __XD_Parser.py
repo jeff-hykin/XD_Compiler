@@ -8,9 +8,13 @@ import copy
 
 
 Code = """
-hello_ = 10
-thing_ << hello_ + 10
+
+ten_ = 10
+thing_ << ten_ + 10
+
 """
+
+
 
 
 
@@ -19,6 +23,7 @@ thing_ << hello_ + 10
 # general tools
 #
 if True:
+    debug = False
     INDENT = 0
     def TestPrint (input_):
         global INDENT
@@ -423,12 +428,12 @@ if True:
 #
 if True: 
     # exec(FileAt(pwd()+"/*thing_name*.py"))
-    exec(FileAt(pwd()+"/EqualScout.py"))
-    exec(FileAt(pwd()+"/UserNamedValueScout.py"))
-    exec(FileAt(pwd()+"/ExistingUserNamedValueScout.py"))
-    exec(FileAt(pwd()+"/RawNumberScout.py"))
-    exec(FileAt(pwd()+"/AssignmentScout.py"))
-    exec(FileAt(pwd()+"/PlusOperatorScout.py"))
+    exec(FileAt(pwd()+"/Scouts/EqualScout.py"))
+    exec(FileAt(pwd()+"/Scouts/AssignmentScout.py"))
+    exec(FileAt(pwd()+"/Scouts/UserNamedValueScout.py"))
+    exec(FileAt(pwd()+"/Scouts/ExistingUserNamedValueScout.py"))
+    exec(FileAt(pwd()+"/Scouts/RawNumberScout.py"))
+    exec(FileAt(pwd()+"/Scouts/PlusOperatorScout.py"))
     for each in all_scouts:
         ParseContext[each.name] = each
     for each in ParseContext.keys():
@@ -443,6 +448,10 @@ if True:
 
 MainParse(ParseContext)
 Print( TheTree )
+
+
+
+
 
 
 
