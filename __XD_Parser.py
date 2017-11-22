@@ -6,7 +6,7 @@ import copy
 
 
 
-
+# this Code would normally be pulled from a file or sys.arg[0]
 Code = """
 
 ten_ = 10
@@ -24,6 +24,9 @@ thing_ << ten_ + 10
 #
 if True:
     debug = False
+
+    # INDENT and TestPrint() are just for debugging
+    # if you want to see the inner workings of everything just set debug = True
     INDENT = 0
     def TestPrint (input_):
         global INDENT
@@ -51,7 +54,7 @@ if True:
 
         # Basically every function in this parser needs 
         # ParseContext or something similar to ParseContext 
-        # as one of it's inputs (probably the last input)
+        # as one of it's inputs (usually the last input)
         ParseContext = {
             'CODE'    : Code  ,
             'START'   : 0     ,
@@ -89,24 +92,28 @@ if True:
 
             def Search(self, GivenParseContext):
                 ParseContext = dict(GivenParseContext)
-                global INDENT
-                TestPrint('Looking for '+self.name)
-                INDENT = INDENT + 1
-                TestPrint('First? = '+ str(ParseContext['FIRST']))
-                TestPrint('has memory of itself? = ' + str(self.memory is not None))
 
-                # check to see if the shortcut has been set 
-                # if it has been set, then load the results from Scout.memory 
-                # rather than re-parsing 
+                # this global INDENT stuff is used for debugging 
+                # (recursive ouput more indented than initial output)
+                if True:
+                    global INDENT
+                    TestPrint('Looking for '+self.name)
+                    INDENT = INDENT + 1
+                    TestPrint('First? = '+ str(ParseContext['FIRST']))
+                    TestPrint('has memory of itself? = ' + str(self.memory is not None))
+
+                # if this scout has already been searched then its shortcut will be set
+                # so check to see if the shortcut has been set 
+                # if it has been set, then just load the results from Scout.memory 
+                # (rather than re-parsing)
                 first_ = ParseContext['FIRST']
                 if first_ and self.memory is not None:
                     TestPrint('Shortcut for '+self.name+' found')
                     INDENT = INDENT - 1
                     return self.memory 
                 
-                # create some envionment variables 
-                # that the Scout's code will use 
-                # when it is run 
+                # create some envionment variables (FOUND, END, RESTART, etc) 
+                # that the Scout's code will use when it is run 
                 if True: 
                     
                     # run the Code Replacer 
@@ -146,6 +153,7 @@ if True:
                             del ParseContext[each]
 
                         # output is a shortcut for simply making Find() the parse context
+                        # ex: OUTPUT = Find('blah') would mean just use the END,SHARE,TREE, etc inside of OUTPUT
                         if ParseContext.get('OUTPUT', None) is not None:
                             ParseContext = ParseContext['OUTPUT']
 
@@ -210,6 +218,7 @@ if True:
                         skip = True 
                 if skip == True:
                     continue
+                    
                 # else if a scout has any of the needed attributes
                 for any_attribute in attributes:
                     if any_attribute in each_scout.attributes:
@@ -228,11 +237,13 @@ if True:
             else:
                 return biggest_ 
         
+        # MainParse is essentially just ParseBiggest() on a loop 
         def MainParse(ParseContext):
             global TheTree 
             global all_scouts
             counter = 0
-            # Keep looping 
+        
+            # Keep finding things till nothing more can be found  
             while True:
                 counter = counter + 1    
                 ParseContext['FIRST'] = True
@@ -251,24 +262,24 @@ if True:
 
 
 #
-# Tools 
+# Tools (Used inside of the Scout's code)
 #
 if True: 
 
         #
         #   Find()
         #
+            # examples of valid uses
             #Find(Scout, ParseContext)
             #Find(Regex, ParseContext)
             #Find([attributes], ParseContext)
                 def Find(*inputs_tuple, **kwargs):
                     inputs_      = list(inputs_tuple)
-                    # prep data 
+                    # the input prep data 
                     ParseContext = inputs_[-1]
                     ParseContext['START'] = ParseContext['RESTART']
-                        
                     
-                    # if only one input 
+                    # if only one non-context input 
                     if len(inputs_) <= 2:
                         # FindScout 
                         if type(inputs_[0]) is Scout:
@@ -447,6 +458,7 @@ if True:
 
 
 MainParse(ParseContext)
+print "the demo input:\n" + Indent(Code)
 Print( TheTree )
 
 
