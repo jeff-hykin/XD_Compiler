@@ -1,6 +1,6 @@
 # Heads up
 
-This is my most ambitious project, and at the moment it is not a great representation of my code in general. If you know how to use it, it works reliably. However, it is far from being finished. I suggest reading 'how it works' to get a good idea of the program, but you might want to wait till a later date before looking at the code.
+This is one of my first ambitious projects, and it is not a great representation of my code in general. If you know how to use it, it works reliably. However, it is far from being finished. I suggest reading 'how it works' to get a good idea of the program, but you might want to wait till a later date before looking at the code.
 
 The program needs a good coding-interface (even if you know how to use it, it is currently a pain to use). I'll likely be able to build an interface around Jan 2017. Until the interface is made, it is posted here more for ease of access (rather than collaboration). The other major design element that needs to be fixed are the coding methods/pratices. There are many uses of exec() which is not a good thing to be using frequently.
 
